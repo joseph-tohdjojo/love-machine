@@ -1,0 +1,25 @@
+{
+  "name": "love-machine",
+  "version": "1.0.0",
+  "description":
+    "A node app to get my machine configured just the way I like it",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joseph-tohdjojo/love-machine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joseph-tohdjojo/love-machine/issues"
+  },
+  "homepage": "https://github.com/joseph-tohdjojo/love-machine#readme",
+  "devDependencies": {
+    "prettier": "1.11.1"
+  },
+  "dependencies": {}
+}
