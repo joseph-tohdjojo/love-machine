@@ -1,8 +1,7 @@
 {
   "name": "love-machine",
   "version": "1.0.0",
-  "description":
-    "A node app to get my machine configured just the way I like it",
+  "description": "A node app to get my machine configured just the way I like it",
   "main": "index.js",
   "scripts": {
     "start": "node src/start.js"
@@ -21,5 +20,8 @@
   "devDependencies": {
     "prettier": "1.11.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "inquirer": "^5.2.0",
+    "ora": "^2.0.0"
+  }
 }
