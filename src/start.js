@@ -6,7 +6,7 @@ getConfig()
     console.log('')
     return setup(config)
   })
-  .then(r => console.log('done', r))
+  .then(r => console.log('\n🎉 🎉 🎉  done', r, '\n'))
   .catch(e => {
     console.log('\n‼️ ', e, '\n')
   })
