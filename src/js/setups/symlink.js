@@ -17,7 +17,7 @@ module.exports = {
 
 // GIT
 function symlinkGitConfig(config) {
-  const fileToPointTo = path.resolve(__dirname, '../../dotfiles/git/gitconfig')
+  const fileToPointTo = path.resolve(__dirname, '../../dotfiles/git/.gitconfig')
   const target = `${HOMEDIR}/.gitconfig`
   return symlink({ ...config, fileToPointTo, key: 'git', target })
 }
@@ -25,7 +25,7 @@ function symlinkGitConfig(config) {
 function symlinkGitCompletionBash(config) {
   const fileToPointTo = path.resolve(
     __dirname,
-    '../../dotfiles/git/git-completion.bash',
+    '../../dotfiles/git/.git-completion.bash',
   )
   const target = `${HOMEDIR}/.git-completion.bash`
   return symlink({ ...config, fileToPointTo, key: 'git', target })
@@ -34,7 +34,7 @@ function symlinkGitCompletionBash(config) {
 function symlinkGitExcludes(config) {
   const fileToPointTo = path.resolve(
     __dirname,
-    `../../dotfiles/git/gitexcludes`,
+    `../../dotfiles/git/.gitexcludes`,
   )
   const target = `${HOMEDIR}/.gitexcludes`
   return symlink({ ...config, fileToPointTo, key: 'git', target })
@@ -44,14 +44,14 @@ function symlinkGitExcludes(config) {
 function symlinkBashProfile(config) {
   const fileToPointTo = path.resolve(
     __dirname,
-    `../../dotfiles/bash/bash_profile`,
+    `../../dotfiles/bash/.bash_profile`,
   )
   const target = `${HOMEDIR}/.bash_profile`
   return symlink({ ...config, fileToPointTo, key: 'bash', target })
 }
 
 function symlinkBashrc(config) {
-  const fileToPointTo = path.resolve(__dirname, `../../dotfiles/bash/bashrc`)
+  const fileToPointTo = path.resolve(__dirname, `../../dotfiles/bash/.bashrc`)
   const target = `${HOMEDIR}/.bashrc`
   return symlink({ ...config, fileToPointTo, key: 'bash', target })
 }

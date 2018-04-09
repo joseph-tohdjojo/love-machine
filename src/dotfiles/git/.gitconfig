@@ -1,0 +1,7 @@
+[user]
+  name = Joseph Toh Djojo
+  email = jt641v@att.com
+[core]
+  editor = vim
+[credential]
+  helper = osxkeychain
