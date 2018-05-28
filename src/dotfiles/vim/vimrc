@@ -173,6 +173,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:signify_vcs_list = [ 'git' ]
 
 " scrooloose/nerdtree
+let NERDTreeShowHidden = 1
 nnoremap <Leader>\ :NERDTreeToggle<CR>
 
 " scrooloose/nerdcommenter
