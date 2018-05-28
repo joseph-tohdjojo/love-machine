@@ -2,9 +2,10 @@ const fs = require('fs')
 const ora = require('ora')
 const path = require('path')
 
-const spinner = ora('Attempting to symlink gitconfig...')
+let spinner
 
 module.exports = (fileToPointTo, target) => {
+  spinner = ora(`Attempting to symlink '${target}' to '${fileToPointTo}'...`)
   spinner.start()
   return _deleteSymlink(target).then(response => _createSymlink(fileToPointTo, target))
 }
