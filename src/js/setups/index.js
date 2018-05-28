@@ -1,20 +1,5 @@
-const updateOrInstallHomebrew = require('./homebrew')
-const { setupBashCompletion, setupBashGitPrompt } = require('./bash')
-const {
-  symlinkBashProfile,
-  symlinkBashrc,
-  symlinkGitConfig,
-  symlinkGitCompletionBash,
-  symlinkGitExcludes,
-} = require('./symlink')
+const vimSetup = require('./vim')
 
 module.exports = {
-  setupBashCompletion,
-  setupBashGitPrompt,
-  symlinkBashProfile,
-  symlinkBashrc,
-  symlinkGitConfig,
-  symlinkGitCompletionBash,
-  symlinkGitExcludes,
-  updateOrInstallHomebrew,
+  vimSetup
 }

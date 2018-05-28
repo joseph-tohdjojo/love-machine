@@ -1,12 +1,7 @@
-const { getConfig } = require('./js/usrConfig')
-const { setup } = require('./js/setup')
+const inquire = require('./js/inquire')
 
-getConfig()
-  .then(config => {
-    console.log('')
-    return setup(config)
-  })
-  .then(r => console.log('\n🎉 🎉 🎉  done', r, '\n'))
+inquire()
+  .then(r => console.log('\n🎉 🎉 🎉  done', '\n'))
   .catch(e => {
     console.log('\n‼️ ', e, '\n')
   })

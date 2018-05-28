@@ -96,7 +96,7 @@ alias ll="ls -lah"
 alias la="ls -a"
 
 # Change directories
-alias coding="cd ~/Coding/"
+alias coding="cd ~/Documents/Coding/"
 alias ..="cd .."
 
 # Git
