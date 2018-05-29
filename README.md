@@ -9,4 +9,4 @@ A node app to get my machine configured just the way I like it
 * Answer the prompt questions
 
 ### Got any questions? Contact...
-* Joe ðŸ”
+* Joe 🍔
