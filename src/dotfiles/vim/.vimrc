@@ -42,6 +42,7 @@ set updatetime=1000
 runtime macros/matchit.vim
 au CursorHold,CursorHoldI * checktime
 au BufLeave * :wa " save when switching splits
+hi MatchParen cterm=bold ctermbg=white ctermfg=black
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -147,10 +148,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mhinz/vim-signify'
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'vim-airline/vim-airline'

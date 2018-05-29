@@ -21,6 +21,7 @@
     "prettier": "1.11.1"
   },
   "dependencies": {
+    "clear": "^0.1.0",
     "inquirer": "^5.2.0",
     "ora": "^2.0.0"
   }

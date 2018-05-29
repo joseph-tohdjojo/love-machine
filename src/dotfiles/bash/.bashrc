@@ -96,7 +96,7 @@ alias ll="ls -lah"
 alias la="ls -a"
 
 # Change directories
-alias coding="cd ~/Documents/Coding/"
+alias dev="cd ~/Documents/Coding/"
 alias ..="cd .."
 
 # Git
@@ -107,9 +107,6 @@ alias gp="git push"
 # Reload .bash_profile
 alias prof="source ~/.bash_profile"
 
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -7,7 +7,8 @@ let spinner
 module.exports = (fileToPointTo, target) => {
   spinner = ora(`Attempting to symlink '${target}' to '${fileToPointTo}'...`)
   spinner.start()
-  return _deleteSymlink(target).then(response => _createSymlink(fileToPointTo, target))
+  return _deleteSymlink(target)
+    .then(response => _createSymlink(fileToPointTo, target))
 }
 
 function _deleteSymlink(target) {
@@ -20,9 +21,7 @@ function _deleteSymlink(target) {
         spinner.text = `File or symlink exists`
         fs.unlink(target, err => {
           if (err) {
-            spinner.fail(
-              `Cannot fs.unlink a file that does not exist, ${target}`,
-            )
+            spinner.fail(`Cannot fs.unlink a file that does not exist, ${target}`)
             reject(err)
           } else {
             spinner.text = `File or symlink deleted`
@@ -41,9 +40,7 @@ function _createSymlink(fileToPointTo, target) {
         spinner.fail(`something bad happened when creating the symlink`)
         reject(err)
       } else {
-        spinner.succeed(
-          `Successfully symlinked '${target}' to '${fileToPointTo}'!!!`,
-        )
+        spinner.succeed(`Successfully symlinked '${target}' to '${fileToPointTo}'!!!`)
         resolve()
       }
     })

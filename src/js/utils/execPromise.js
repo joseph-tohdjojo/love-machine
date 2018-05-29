@@ -1,17 +1,22 @@
 const ora = require('ora')
 const { exec } = require('child_process')
 
-
-module.exports = (command, commandName = `the command`, shouldhandleError = true) => {
-  const spinner = ora(`Attempting to execute '${commandName}'...`)
+module.exports = ({ 
+  command, 
+  startMessage, 
+  successMessage, 
+  failureMessage, 
+  shouldNotHandleError,
+}) => {
+  const spinner = ora(startMessage || 'Attempting to execute a command')
   spinner.start()
   return new Promise((resolve, reject) =>
     exec(command, (err, stdout, stderr) => {
-      if(shouldhandleError && err) {
-        spinner.fail(`something bad happened when trying to execute '${commandName}'`)
+      if(!shouldNotHandleError && err) {
+        spinner.fail(failureMessage || `Unable to execute this command`)
         reject(err)
       } else {
-        spinner.succeed(`Successfully executed '${commandName}'!!!`)
+        spinner.succeed(successMessage || `Successfully executed command!!!`)
         resolve({err, stdout, stderr})
       }
     })

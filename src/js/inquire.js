@@ -1,5 +1,9 @@
+const clear = require('clear')
 const inquirer = require('inquirer')
-const { vimSetup } = require('./setups')
+const { bashSetup, gitSetup, vimSetup } = require('./setups')
+const { execPromise } = require('./utils')
+
+clear()
 
 module.exports = () => inquirer
   .prompt([
@@ -18,12 +22,18 @@ module.exports = () => inquirer
           name: 'choose_setup',
           message: `What would you like to setup?`,
           choices: [
+            'Bash',
+            'Git',
             'Vim',
           ],
         }])
   )
   .then(({choose_setup}) => {
     switch(choose_setup) {
+      case 'Bash':
+        return bashSetup()
+      case 'Git':
+        return gitSetup()
       case 'Vim':
         return vimSetup()
       default:
