@@ -148,6 +148,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mhinz/vim-signify'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'

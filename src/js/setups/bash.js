@@ -7,10 +7,10 @@ const HOMEDIR = os.homedir()
 
 module.exports = () =>
   _setupBashCompletion()
-  .then(() => _setupBashGitPrompt())
-  .then(() => _symlinkBashProfile())
-  .then(() => _symlinkBashrc())
-  .then(() => _sourceBashProfile())
+    .then(() => _setupBashGitPrompt())
+    .then(() => _symlinkBashProfile())
+    .then(() => _symlinkBashrc())
+    .then(() => _sourceBashProfile())
 
 function _setupBashCompletion() {
   return execPromise({
@@ -32,7 +32,8 @@ function _setupBashCompletion() {
         return execPromise({
           command: `brew upgrade bash-completion && brew cleanup bash-completion`,
           startMessage: 'Attempting to upgrade bash-completion and clean it up',
-          successMessage: 'Successfully upgraded bash-completion and cleaned it up!!!',
+          successMessage:
+            'Successfully upgraded bash-completion and cleaned it up!!!',
           failureMessage: 'Unable to upgrade bash-completion and clean it up',
           shouldNotHandleError: true,
         }).then(
@@ -48,7 +49,7 @@ function _setupBashCompletion() {
       }
     })
     .then(({ err }) => {
-      if(err) {
+      if (err) {
         throw err
       }
       return Promise.resolve()
@@ -74,7 +75,8 @@ function _setupBashGitPrompt() {
       } else {
         return execPromise({
           command: `brew upgrade bash-git-prompt && brew cleanup bash-git-prompt`,
-          startMessage: 'Attempting to upgrade bash-git-prompt and cleaning it up',
+          startMessage:
+            'Attempting to upgrade bash-git-prompt and cleaning it up',
           successMessage: 'Successfully upgraded bash-git-prompt!!!',
           failureMessage: 'Unable to upgrade bash-git-prompt',
           shouldNotHandleError: true,
@@ -99,13 +101,27 @@ function _setupBashGitPrompt() {
 }
 
 function _symlinkBashProfile() {
-  const fileToPointTo = path.resolve(__dirname, '..', '..', 'dotfiles', 'bash', '.bash_profile')
+  const fileToPointTo = path.resolve(
+    __dirname,
+    '..',
+    '..',
+    'dotfiles',
+    'bash',
+    '.bash_profile',
+  )
   const target = `${HOMEDIR}/.bash_profile`
   return symlink(fileToPointTo, target)
 }
 
 function _symlinkBashrc() {
-  const fileToPointTo = path.resolve(__dirname, '..', '..', 'dotfiles', 'bash', '.bashrc')
+  const fileToPointTo = path.resolve(
+    __dirname,
+    '..',
+    '..',
+    'dotfiles',
+    'bash',
+    '.bashrc',
+  )
   const target = `${HOMEDIR}/.bashrc`
   return symlink(fileToPointTo, target)
 }

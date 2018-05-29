@@ -6,10 +6,10 @@ const HOMEDIR = os.homedir()
 
 module.exports = () =>
   _installVim()
-  .then(() => _deleteVimFolder())
-  .then(() => _installVimPlug())
-  .then(() => _symlinkVimrc())
-  .then(() => _installVimPlugins())
+    .then(() => _deleteVimFolder())
+    .then(() => _installVimPlug())
+    .then(() => _symlinkVimrc())
+    .then(() => _installVimPlugins())
 
 function _installVim() {
   return execPromise({
@@ -18,19 +18,18 @@ function _installVim() {
     successMessage: 'Successfully installed Vim!!!',
     failureMessage: 'Unable to  install Vim',
     shouldNotHandleError: true,
+  }).then(({ err }) => {
+    if (err) {
+      return execPromise({
+        command: 'brew upgrade vim',
+        startMessage: 'Attempting to upgrade Vim',
+        successMessage: 'Successfully upgraded Vim!!!',
+        failureMessage: 'Unable to upgrade Vim',
+      })
+    } else {
+      Promise.resolve()
+    }
   })
-    .then(({err}) => {
-      if(err) {
-        return execPromise({
-          command: 'brew upgrade vim',
-          startMessage: 'Attempting to upgrade Vim',
-          successMessage: 'Successfully upgraded Vim!!!',
-          failureMessage: 'Unable to upgrade Vim',
-        })
-      } else {
-        Promise.resolve()
-      }
-    })
 }
 
 function _deleteVimFolder() {
@@ -44,7 +43,8 @@ function _deleteVimFolder() {
 
 function _installVimPlug() {
   return execPromise({
-    command: 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    command:
+      'curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
     startMessage: 'Attempting to install Vim-Plug',
     successMessage: 'Successfully installed Vim-Plug!!!',
@@ -55,7 +55,7 @@ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
 function _symlinkVimrc() {
   return symlink(
     path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', '.vimrc'),
-    `${HOMEDIR}/.vimrc`
+    `${HOMEDIR}/.vimrc`,
   )
 }
 
