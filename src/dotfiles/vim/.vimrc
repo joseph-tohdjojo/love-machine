@@ -121,7 +121,7 @@ nnoremap <Leader>ct <C-w>q
 " Close current tab(split) and buffer
 autocmd VimEnter * nnoremap <leader>cb :bd<CR>
 " Create new tab(split) with current buffer
-nnoremap <Leader>nt :vs<CR>:bp<CR><C-W><C-L>
+nnoremap <Leader>nt :vs<CR>:bp<CR><C-w>l
 
 " Select all
 nnoremap <Leader>a ggVG
