@@ -1,12 +1,13 @@
 const ora = require('ora')
 const os = require('os')
 const path = require('path')
-const { execPromise, symlink } = require('../utils')
+const { execPromise, symlink, updateOrInstallHomebrew } = require('../utils')
 
 const HOMEDIR = os.homedir()
 
 module.exports = () =>
-  _setupBashCompletion()
+  updateOrInstallHomebrew()
+    .then(() => _setupBashCompletion())
     .then(() => _setupBashGitPrompt())
     .then(() => _symlinkBashProfile())
     .then(() => _symlinkBashrc())

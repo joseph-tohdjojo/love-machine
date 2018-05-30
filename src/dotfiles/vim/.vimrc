@@ -96,6 +96,9 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 " Do all the things to reset vim
 nnoremap <leader>vim :w<CR>:source $MYVIMRC<CR>:PlugInstall<CR>
 
+" Source my tmux config file
+nnoremap <leader>st :!tmux source ~/.tmux.conf<CR>
+
 " Save current file
 nnoremap <leader>ss :w<CR>
 
@@ -147,6 +150,7 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 " Call :PlugInstall to install plugins
 
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'henrik/vim-indexed-search'
 Plug 'jiangmiao/auto-pairs'

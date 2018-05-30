@@ -1,6 +1,6 @@
 const clear = require('clear')
 const inquirer = require('inquirer')
-const { bashSetup, gitSetup, vimSetup } = require('./setups')
+const { bashSetup, gitSetup, tmuxSetup, vimSetup } = require('./setups')
 const { execPromise } = require('./utils')
 
 clear()
@@ -23,7 +23,7 @@ module.exports = () =>
                 type: 'list',
                 name: 'choose_setup',
                 message: `What would you like to setup?`,
-                choices: ['Bash', 'Git', 'Vim'],
+                choices: ['Bash', 'Git', 'Tmux', 'Vim'],
               },
             ]),
     )
@@ -33,6 +33,8 @@ module.exports = () =>
           return bashSetup()
         case 'Git':
           return gitSetup()
+        case 'Tmux':
+          return tmuxSetup()
         case 'Vim':
           return vimSetup()
         default:

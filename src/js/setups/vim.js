@@ -1,11 +1,12 @@
 const path = require('path')
 const os = require('os')
-const { execPromise, symlink } = require('../utils')
+const { execPromise, symlink, updateOrInstallHomebrew } = require('../utils')
 
 const HOMEDIR = os.homedir()
 
 module.exports = () =>
-  _installVim()
+  updateOrInstallHomebrew
+    .then(() => _installVim())
     .then(() => _deleteVimFolder())
     .then(() => _installVimPlug())
     .then(() => _symlinkVimrc())
@@ -44,8 +45,7 @@ function _deleteVimFolder() {
 function _installVimPlug() {
   return execPromise({
     command:
-      'curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
+      'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
     startMessage: 'Attempting to install Vim-Plug',
     successMessage: 'Successfully installed Vim-Plug!!!',
     failureMessage: 'Unable to install Vim-Plug',
