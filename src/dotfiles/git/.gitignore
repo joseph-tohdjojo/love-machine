@@ -18,5 +18,14 @@ Thumbs.db
 
 # Application specific files
 venv
+bower_components
 node_modules
+jspm_packages/
 .sass-cache
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
