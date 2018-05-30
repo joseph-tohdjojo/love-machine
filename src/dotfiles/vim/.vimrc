@@ -45,6 +45,7 @@ runtime macros/matchit.vim
 au CursorHold,CursorHoldI * checktime
 au BufLeave * :wa " save when switching splits
 hi MatchParen cterm=bold ctermbg=white ctermfg=black
+highlight ColorColumn ctermbg=Black
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.

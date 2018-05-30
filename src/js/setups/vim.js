@@ -5,7 +5,7 @@ const { execPromise, symlink, updateOrInstallHomebrew } = require('../utils')
 const HOMEDIR = os.homedir()
 
 module.exports = () =>
-  updateOrInstallHomebrew
+  updateOrInstallHomebrew()
     .then(() => _installVim())
     .then(() => _deleteVimFolder())
     .then(() => _installVimPlug())
