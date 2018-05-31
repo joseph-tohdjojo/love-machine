@@ -1,0 +1,16 @@
+Plug 'alvan/vim-closetag'
+Plug 'chriskempson/base16-vim/'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'henrik/vim-indexed-search'
+Plug 'jiangmiao/auto-pairs'
+Plug 'mhinz/vim-signify'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-repeat'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --js-completer' }
+Plug 'vim-airline/vim-airline'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'Yggdroot/indentLine'

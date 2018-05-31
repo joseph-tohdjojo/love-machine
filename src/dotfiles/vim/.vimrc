@@ -1,51 +1,16 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Core Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set autoindent
-set autoread
-set autowrite
-set autowriteall
-set background=dark
-set backspace=indent,eol,start
-set clipboard=unnamed
-set colorcolumn=+1
-set encoding=utf-8
-set expandtab
-set fileencoding=utf-8
-set fileformat=unix
-set fileformats=unix,dos
-set guifont=FuraCode_Nerd_Font:h11
-set incsearch
-set laststatus=2
-set list
-set listchars=tab:▸▸,eol:·,extends:▶,precedes:◀ " ,space:·
-set mouse=a
+" Leader
+let mapleader = " "
+
+set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
-set nocompatible
-set nojoinspaces
-set noswapfile
-set nowrap
-set numberwidth=4
-set number relativenumber
-set ruler
-set shiftround
-set shiftwidth=2
-set showcmd
-set smartindent
-set smarttab
-set softtabstop=2
-set splitbelow
-set splitright
-set tabstop=2
-set textwidth=80
-set updatetime=1000
-set visualbell
-runtime macros/matchit.vim
-au CursorHold,CursorHoldI * checktime
-au BufLeave * :wa " save when switching splits
-hi MatchParen cterm=bold ctermbg=white ctermfg=black
-highlight ColorColumn ctermbg=Black
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set history=50
+set ruler         " show the cursor position all the time
+set showcmd       " display incomplete commands
+set incsearch     " do incremental searching
+set laststatus=2  " Always display the status line
+set autowrite     " Automatically :write before running commands
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -53,65 +18,100 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
-" Change the cursor from a box to a line when switching to insert mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
 
-" Get rid of trailing white spaces on save
-fun! <SID>StripTrailingWhiteSpaces()
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  call cursor(l, c)
-endfun
-autocmd BufWritePre * :call <SID>StripTrailingWhiteSpaces()
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
 
-" On file types...
-"   .md files are markdown files
-autocmd BufNewFile,BufRead *.md setlocal ft=markdown
-"   .twig files use html syntax
-autocmd BufNewFile,BufRead *.twig setlocal ft=html
-"   .less files use less syntax
-autocmd BufNewFile,BufRead *.less setlocal ft=less
-"   .jade files use jade syntax
-autocmd BufNewFile,BufRead *.jade setlocal ft=jade
+filetype plugin indent on
 
-" Treat <li> and <p> tags like the block tags they are
-let g:html_indent_tags = 'li\|p'
+augroup vimrcEx
+  autocmd!
 
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it for commit messages, when the position is invalid, or when
+  " inside an event handler (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
 
+  " Set syntax highlighting for specific file types
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
 
+  " ALE linting events
+  if g:has_async
+    set updatetime=1000
+    let g:ale_lint_on_text_changed = 0
+    autocmd CursorHold * call ale#Lint()
+    autocmd CursorHoldI * call ale#Lint()
+    autocmd InsertEnter * call ale#Lint()
+    autocmd InsertLeave * call ale#Lint()
+  else
+    echoerr "The thoughtbot dotfiles require NeoVim or Vim 8"
+  endif
+augroup ENv
 
+" When the type of shell script is /bin/sh, assume a POSIX-compatible
+" shell for syntax highlighting purposes.
+let g:is_posix = 1
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Abbreviations / Key Mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Leader
-let mapleader = " "
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab
 
-" Edit my vimrc file
-nnoremap <leader>ev :vsplit $MYVIMRC<CR>
-" Source my vimrc file
-nnoremap <leader>sv :source $MYVIMRC<CR>
-" Do all the things to reset vim
-nnoremap <leader>vim :w<CR>:source $MYVIMRC<CR>:PlugInstall<CR>
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
 
-" Source my tmux config file
-nnoremap <leader>st :!tmux source ~/.tmux.conf<CR>
+" Use one space, not two, after punctuation.
+set nojoinspaces
 
-" Save current file
-nnoremap <leader>ss :w<CR>
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
 
-" Switch left and right between buffers
-nnoremap <leader>q :bp<CR>
-nnoremap <leader>w :bn<CR>
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag --literal --files-with-matches --nocolor --hidden -g "" %s'
 
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+
+  if !exists(":Ag")
+    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+    nnoremap \ :Ag<SPACE>
+  endif
+endif
+
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1
+
+" Numbers
+set number
+set numberwidth=5
+
+" Tab completion
+" will insert tab at beginning of line,
+" will use completion if not at beginning
+set wildmode=list:longest,list:full
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<Tab>"
+    else
+        return "\<C-p>"
+    endif
+endfunction
+inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
+inoremap <S-Tab> <C-n>
 
 " Switch between the last two files
 nnoremap <Leader><Leader> <C-^>
@@ -122,95 +122,44 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
-" Close current tab(split)
-nnoremap <Leader>ct <C-w>q
-" Close current tab(split) and buffer
-autocmd VimEnter * nnoremap <leader>cb :bd<CR>
-" Create new tab(split) with current buffer
-nnoremap <Leader>nt :vs<CR>:bp<CR><C-w>l
+" vim-test mappings
+nnoremap <silent> <Leader>t :TestFile<CR>
+nnoremap <silent> <Leader>s :TestNearest<CR>
+nnoremap <silent> <Leader>l :TestLast<CR>
+nnoremap <silent> <Leader>a :TestSuite<CR>
+nnoremap <silent> <Leader>gt :TestVisit<CR>
 
-" Select all
-nnoremap <Leader>a ggVG
+" Run commands that require an interactive shell
+nnoremap <Leader>r :RunInInteractiveShell<Space>
 
-" Allow Tab and Shift+Tab to tab selection in visual mode
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
 
-" change spacing for language specific
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
 
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
+" Move between linting errors
+nnoremap ]r :ALENextWrap<CR>
+nnoremap [r :ALEPreviousWrap<CR>
 
+" Set spellfile to location that is guaranteed to exist, can be symlinked to
+" Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
+set spellfile=$HOME/.vim-spell-en.utf-8.add
 
+" Autocomplete with dictionary words when spell check is on
+set complete+=kspell
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype plugin indent on
+" Always use vertical diffs
+set diffopt+=vertical
 
-call plug#begin('~/.vim/plugged')
-" Call :PlugInstall to install plugins
-
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'henrik/vim-indexed-search'
-Plug 'jiangmiao/auto-pairs'
-Plug 'mhinz/vim-signify'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-Plug 'vim-airline/vim-airline'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'Yggdroot/indentLine'
-
-call plug#end()
-
-
-
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ctrlpvim/ctrlp.vim
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-let g:ctrlp_working_path_mode = 'ra'
-
-" mhinz/vim-signify
-let g:signify_vcs_list = [ 'git' ]
-
-" scrooloose/nerdtree
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeShowHidden = 1
-let NERDTreeQuitOnOpen = 1
-nnoremap <Leader>\ :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-" scrooloose/nerdcommenter
-let g:NERDSpaceDelims = 1
-
-" Valloric/YouCompleteMe
-" Start autocompletion after 4 chars
-let g:ycm_min_num_of_chars_for_completion = 3
-let g:ycm_min_num_identifier_candidate_chars = 3
-let g:ycm_enable_diagnostic_highlighting = 0
-" Don't show YCM's preview window [ I find it really annoying ]
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt = 0
-
-" vim-airline/vim-airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-
-" Yggdroot/indentLine
-let g:indentLine_enabled = 1
-let g:indentLine_char = '|'
+" Local config
+if filereadable($HOME . "/.vimrc.local")
+  source ~/.vimrc.local
+endif
