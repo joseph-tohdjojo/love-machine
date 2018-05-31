@@ -1,4 +1,4 @@
-const inquire = require('./js/inquire')
+const inquire = require('./inquire')
 
 inquire()
   .then(r => console.log('\n🎉 🎉 🎉  done', '\n'))
