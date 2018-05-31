@@ -3,6 +3,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set autoindent
 set autoread
+set background=dark
 set clipboard=unnamed
 set encoding=utf-8
 set fileencoding=utf-8
@@ -15,22 +16,31 @@ set mouse=a
 set noswapfile
 set nowrap
 set number relativenumber
+set numberwidth=4
 set smartindent
 set smarttab
 set softtabstop=2
 set updatetime=1000
 set visualbell
-" au CursorHold,CursorHoldI * checktime
+au CursorHold,CursorHoldI * checktime
 au BufLeave * :wa " save when switching splits
-" hi MatchParen cterm=bold ctermbg=white ctermfg=black
+hi MatchParen cterm=bold ctermbg=white ctermfg=black
 highlight ColorColumn ctermbg=Black
+
+if $TERM == "xterm-256color"
+  set t_Co=256
+endif
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
-colorscheme base16-default-dark
+colorscheme base16-google-dark
 
 " Change the cursor from a box to a line when switching to insert mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -122,22 +132,9 @@ autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_working_path_mode = 'ra'
 
-" joshdick/onedark.vim
-" Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
-" If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
-" (see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  " For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  " Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
+" matt
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = { 'javascript.jsx' : { 'extends' : 'jsx' } }
 
 " mhinz/vim-signify
 let g:signify_vcs_list = [ 'git' ]
