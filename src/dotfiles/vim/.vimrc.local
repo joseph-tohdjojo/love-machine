@@ -119,8 +119,8 @@ autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 " Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctrlpvim/ctrlp.vim
-" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-" let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_working_path_mode = 'ra'
 
 " joshdick/onedark.vim
 " Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
@@ -171,8 +171,3 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " Yggdroot/indentLine
 let g:indentLine_enabled = 1
 let g:indentLine_char = '|'
-
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
-endif
