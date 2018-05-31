@@ -108,7 +108,7 @@ function _symlinkBashProfile() {
     '..',
     'dotfiles',
     'bash',
-    '.bash_profile',
+    'bash_profile',
   )
   const target = `${HOMEDIR}/.bash_profile`
   return symlink(fileToPointTo, target)
@@ -121,7 +121,7 @@ function _symlinkBashrc() {
     '..',
     'dotfiles',
     'bash',
-    '.bashrc',
+    'bashrc',
   )
   const target = `${HOMEDIR}/.bashrc`
   return symlink(fileToPointTo, target)

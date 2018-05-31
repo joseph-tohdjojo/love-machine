@@ -53,7 +53,7 @@ function _installTPM() {
 
 function _symlinkTmuxConfig() {
   return symlink(
-    path.resolve(__dirname, '..', '..', 'dotfiles', 'tmux', '.tmux.conf'),
+    path.resolve(__dirname, '..', '..', 'dotfiles', 'tmux', 'tmux.conf'),
     `${HOMEDIR}/.tmux.conf`
   )
 }

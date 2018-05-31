@@ -18,7 +18,7 @@ function _symlinkGitCompletion() {
     '..',
     'dotfiles',
     'git',
-    '.git-completion.bash',
+    'git-completion.bash',
   )
   const target = `${HOMEDIR}/.git-completion.bash`
   return symlink(fileToPointTo, target)
@@ -31,7 +31,7 @@ function _symlinkGitConfig() {
     '..',
     'dotfiles',
     'git',
-    '.gitconfig',
+    'gitconfig',
   )
   const target = `${HOMEDIR}/.gitconfig`
   return symlink(fileToPointTo, target)
@@ -44,7 +44,7 @@ function _symlinkGitExcludes() {
     '..',
     'dotfiles',
     'git',
-    '.gitexcludes',
+    'gitexcludes',
   )
   const target = `${HOMEDIR}/.gitexcludes`
   return symlink(fileToPointTo, target)
@@ -57,7 +57,7 @@ function _symlinkGitIgnore() {
     '..',
     'dotfiles',
     'git',
-    '.gitignore',
+    'gitignore',
   )
   const target = `${HOMEDIR}/.gitignore`
   return symlink(fileToPointTo, target)

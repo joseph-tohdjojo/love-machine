@@ -68,21 +68,21 @@ function _installVimPlug() {
 
 function _symlinkVimrc() {
   return symlink(
-    path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', '.vimrc'),
+    path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', 'vimrc'),
     `${HOMEDIR}/.vimrc`,
   )
 }
 
 function _symlinkVimrcBundles() {
   return symlink(
-    path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', '.vimrc.bundles'),
+    path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', 'vimrc.bundles'),
     `${HOMEDIR}/.vimrc.bundles`,
   )
 }
 
 function _symlinkVimrcBundlesLocal() {
   return symlink(
-    path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', '.vimrc.bundles.local'),
+    path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', 'vimrc.bundles.local'),
     `${HOMEDIR}/.vimrc.bundles.local`,
   )
 }
@@ -98,7 +98,7 @@ function _installVimPlugins() {
 
 function _symlinkVimrcLocal() {
   return symlink(
-    path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', '.vimrc.local'),
+    path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', 'vimrc.local'),
     `${HOMEDIR}/.vimrc.local`,
   )
 }
