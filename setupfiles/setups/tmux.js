@@ -11,6 +11,7 @@ module.exports = () =>
     .then(() => _installTPM())
     .then(() => _symlinkTmuxConfig())
     .then(() => _installTPMPlugins())
+    .then(() => _symlinkTmuxDevLayout())
 
 function _installTmux() {
   return execPromise({
@@ -65,4 +66,11 @@ function _installTPMPlugins() {
     successMessage: 'Successfully installed Tmux plugins',
     failureMessage: 'Unable to install Tmux plugins',
   })
+}
+
+function _symlinkTmuxDevLayout() {
+  return symlink(
+    path.resolve(__dirname, '..', '..', 'dotfiles', 'tmux', 'tmux.layout.dev'),
+    `${HOMEDIR}/.tmux/tmux.layout.dev`,
+  )
 }
