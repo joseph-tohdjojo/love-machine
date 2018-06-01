@@ -97,6 +97,9 @@ nnoremap <leader>st :!tmux source ~/.tmux.conf<CR>
 " Save current file
 nnoremap <leader>ss :w<CR>
 
+" Initiate find without worrying about case. Confirm before replacing
+nnoremap <leader>F :%s//gci<Left><Left><Left><Left>
+
 " Switch left and right between buffers
 nnoremap <leader>q :bp<CR>
 nnoremap <leader>w :bn<CR>
