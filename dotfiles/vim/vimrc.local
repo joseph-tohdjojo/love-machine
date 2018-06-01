@@ -137,8 +137,11 @@ autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 " Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " alvan/vim-closetag
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
-let g:closetag_xhtml_filenames = '*.js'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx'
+let g:closetag_xhtml_filenames = '*.xhtml,*.js,*.jsx'
+let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx'
+let g:closetag_xhtml_filetypes = 'xhtml,js,jsx'
+let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
