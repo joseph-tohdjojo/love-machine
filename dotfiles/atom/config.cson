@@ -1,0 +1,80 @@
+"*":
+  "atom-material-ui":
+    colors:
+      abaseColor: "#fbd451"
+      accentColor: "#6689ff"
+      genAccent: true
+      paintCursor: true
+      predefinedColor: "Amber"
+    fonts:
+      fontSize: 14
+    tabs:
+      compactTabs: true
+    treeView:
+      compactList: true
+    ui:
+      panelContrast: true
+      panelShadows: true
+  "auto-update-packages": {}
+  autosave:
+    enabled: true
+  "color-picker":
+    automaticReplace: true
+  core:
+    allowPendingPaneItems: false
+    audioBeep: false
+    disabledPackages: [
+      "linter"
+    ]
+    excludeVcsIgnoredPaths: false
+    ignoredNames: [
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      "._*"
+      "Thumbs.db"
+      "desktop.ini"
+    ]
+    projectHome: "/Users/jt641v/Projects"
+    telemetryConsent: "no"
+    themes: [
+      "atom-material-ui"
+      "base16-tomorrow-dark-theme"
+    ]
+  editor:
+    fontFamily: "FuraCode Nerd Font"
+    fontSize: 11
+    invisibles:
+      eol: "·"
+    showIndentGuide: true
+    showInvisibles: true
+    softWrap: false
+  "exception-reporting":
+    userId: "d95f1f20-d79b-4880-b691-2d5bc598c474"
+  "fuzzy-finder":
+    preserveLastSearch: true
+  "linter-ui-default":
+    showPanel: true
+  minimap:
+    plugins:
+      "find-and-replace": true
+      "find-and-replaceDecorationsZIndex": 0
+  "platformio-ide-terminal":
+    style:
+      theme: "dracula"
+  "prettier-atom":
+    formatOnSaveOptions:
+      enabled: true
+      isDisabledIfNoConfigFile: true
+      isDisabledIfNotInPackageJson: true
+      showInStatusBar: true
+    prettierOptions:
+      semi: false
+      singleQuote: true
+      trailingComma: "all"
+  "relative-numbers": {}
+  "tree-view": {}
+  wakatime:
+    apikey: "Saved in your ~/.wakatime.cfg file"
+  welcome:
+    showOnStartup: false
