@@ -39,7 +39,11 @@ endif
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
-colorscheme base16-google-dark
+
+" My favorite colorschemes
+colorscheme base16-seti
+" colorscheme base16-snazzy
+" colorscheme base16-darktooth
 
 " Change the cursor from a box to a line when switching to insert mode
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
