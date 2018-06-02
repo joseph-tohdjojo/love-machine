@@ -14,6 +14,7 @@ module.exports = () =>
     .then(() => _symlinkVimrc())
     .then(() => _symlinkVimrcBundles())
     .then(() => _symlinkVimrcBundlesLocal())
+    .then(() => _symlinkTernProject())
     .then(() => _installVimPlugins())
     .then(() => _symlinkVimrcLocal())
     .then(() => _sourceVimrc())
@@ -85,6 +86,13 @@ function _symlinkVimrcBundlesLocal() {
   return symlink(
     path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', 'vimrc.bundles.local'),
     `${HOMEDIR}/.vimrc.bundles.local`,
+  )
+}
+
+function _symlinkTernProject() {
+  return symlink(
+    path.resolve(__dirname, '..', '..', 'dotfiles', 'tern', 'tern-project'),
+    `${HOMEDIR}/.tern-project`,
   )
 }
 

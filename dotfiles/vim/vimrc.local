@@ -10,7 +10,7 @@ set fileencoding=utf-8
 set fileformat=unix
 set fileformats=unix,dos
 set guifont=FuraCode_Nerd_Font:h11
-set hlsearch
+" set hlsearch
 set ignorecase
 set list listchars=tab:»·,trail:·,nbsp:·,eol:·,extends:▶,precedes:◀
 set mouse=a
@@ -24,6 +24,7 @@ set smarttab
 set softtabstop=2
 set updatetime=1000
 set visualbell
+set wildignore+=node_modules/**
 
 " if has('persistent_undo')      "check if your vim version supports it
   set undofile                 "turn on the feature
@@ -90,6 +91,10 @@ autocmd BufNewFile,BufRead *.ejs setlocal ft=html
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 
 
 
@@ -113,12 +118,9 @@ nnoremap <leader>ss :w<CR>
 " Initiate Vim's default AutoComplete
 inoremap <Tab> <C-P>
 
-" Initiate find without worrying about case. Confirm before replacing
+" Initiate Search and Replace without worrying about case. Confirm before replacing
 nnoremap <leader>F :%s//gci<Left><Left><Left><Left>
-
-" use ESC to remove search higlight
-nnoremap <esc> :noh<return><esc>
-nnoremap <C-c> :noh<return><esc>
+nnoremap \ :Ack<SPACE>
 
 " Switch left and right between buffers
 nnoremap <leader>q :bp<CR>
@@ -173,7 +175,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:ctrlp_working_path_mode = 'ra'
 
 " mattn/emmet-vim
-let g:user_emmet_leader_key='<Tab>'
+" let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = { 'javascript.jsx' : { 'extends' : 'jsx' } }
 
 " mhinz/vim-signify
