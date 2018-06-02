@@ -3,6 +3,7 @@ const os = require('os')
 const { execPromise, symlink, updateOrInstallHomebrew } = require('../utils')
 
 const HOMEDIR = os.homedir()
+const arr = [1,2,3]
 
 module.exports = () =>
   updateOrInstallHomebrew()

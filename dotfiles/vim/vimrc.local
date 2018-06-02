@@ -10,21 +10,26 @@ set fileencoding=utf-8
 set fileformat=unix
 set fileformats=unix,dos
 set guifont=FuraCode_Nerd_Font:h11
+set hlsearch
+set ignorecase
 set list listchars=tab:»·,trail:·,nbsp:·,eol:·,extends:▶,precedes:◀
 set mouse=a
 set noswapfile
 set nowrap
 set number relativenumber
 set numberwidth=4
+set scrolloff=15
 set smartindent
 set smarttab
 set softtabstop=2
 set updatetime=1000
 set visualbell
-au CursorHold,CursorHoldI * checktime
-au BufLeave * :wa " save when switching splits
-hi MatchParen cterm=bold ctermbg=white ctermfg=black
-highlight ColorColumn ctermbg=Black
+
+" if has('persistent_undo')      "check if your vim version supports it
+  set undofile                 "turn on the feature
+  set undolevels=5000          "save lots of history
+  set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
+" endif
 
 if $TERM == "xterm-256color"
   set t_Co=256
@@ -45,6 +50,9 @@ colorscheme base16-seti
 " colorscheme base16-snazzy
 " colorscheme base16-darktooth
 
+hi MatchParen cterm=bold ctermbg=white ctermfg=black
+highlight ColorColumn ctermbg=Black
+
 " Change the cursor from a box to a line when switching to insert mode
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 if exists('$TMUX')
@@ -64,6 +72,9 @@ fun! <SID>StripTrailingWhiteSpaces()
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhiteSpaces()
 
+au CursorHold,CursorHoldI * checktime
+au BufLeave * :wa " save when switching splits
+
 " On file types...
 "   .md files are markdown files
 autocmd BufNewFile,BufRead *.md setlocal ft=markdown
@@ -73,6 +84,8 @@ autocmd BufNewFile,BufRead *.twig setlocal ft=html
 autocmd BufNewFile,BufRead *.less setlocal ft=less
 "   .jade files use jade syntax
 autocmd BufNewFile,BufRead *.jade setlocal ft=jade
+"   .ejs files use html syntax
+autocmd BufNewFile,BufRead *.ejs setlocal ft=html
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -97,8 +110,15 @@ nnoremap <leader>st :!tmux source ~/.tmux.conf<CR>
 " Save current file
 nnoremap <leader>ss :w<CR>
 
+" Initiate Vim's default AutoComplete
+inoremap <Tab> <C-P>
+
 " Initiate find without worrying about case. Confirm before replacing
 nnoremap <leader>F :%s//gci<Left><Left><Left><Left>
+
+" use ESC to remove search higlight
+nnoremap <esc> :noh<return><esc>
+nnoremap <C-c> :noh<return><esc>
 
 " Switch left and right between buffers
 nnoremap <leader>q :bp<CR>
@@ -173,15 +193,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " scrooloose/nerdcommenter
 let g:NERDSpaceDelims = 1
-
-" Valloric/YouCompleteMe
-" Start autocompletion after 4 chars
-let g:ycm_min_num_of_chars_for_completion = 3
-let g:ycm_min_num_identifier_candidate_chars = 3
-let g:ycm_enable_diagnostic_highlighting = 0
-" Don't show YCM's preview window [ I find it really annoying ]
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt = 0
 
 " vim-airline/vim-airline
 let g:airline_powerline_fonts = 1

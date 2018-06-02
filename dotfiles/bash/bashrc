@@ -93,7 +93,9 @@ alias grv="git remote -v"
 alias gp="git push"
 
 # Reload .bash_profile
-alias prof="source ~/.bash_profile"
+alias bashsource="source $HOME/.bash_profile"
+# Reload .tmux.conf
+alias tmuxsource="tmux source-file $HOME/.tmux.conf"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
