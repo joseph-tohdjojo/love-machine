@@ -8,6 +8,7 @@ const arr = [1,2,3]
 module.exports = () =>
   updateOrInstallHomebrew()
     .then(() => _installVim())
+    .then(() => _installSilverSearcher())
     .then(() => _deleteVimFolder())
     .then(() => _deleteVimFiles())
     .then(() => _installVimPlug())
@@ -33,6 +34,27 @@ function _installVim() {
         startMessage: 'Attempting to upgrade Vim',
         successMessage: 'Successfully upgraded Vim!!!',
         failureMessage: 'Unable to upgrade Vim',
+      })
+    } else {
+      Promise.resolve()
+    }
+  })
+}
+
+function _installSilverSearcher() {
+  return execPromise({
+    command: 'brew install the_silver_searcher',
+    startMessage: 'Attempting to install The Silver Searcher',
+    successMessage: 'Successfully installed The Silver Searcher!!!',
+    failureMessage: 'Unable to  install The Silver Searcher',
+    shouldNotHandleError: true,
+  }).then(({ err }) => {
+    if (err) {
+      return execPromise({
+        command: 'brew upgrade the_silver_searcher',
+        startMessage: 'Attempting to upgrade The Silver Searcher',
+        successMessage: 'Successfully upgraded The Silver Searcher!!!',
+        failureMessage: 'Unable to upgrade The Silver Searcher',
       })
     } else {
       Promise.resolve()

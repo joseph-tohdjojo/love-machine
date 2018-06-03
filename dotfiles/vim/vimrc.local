@@ -26,11 +26,11 @@ set updatetime=1000
 set visualbell
 set wildignore+=node_modules/**
 
-" if has('persistent_undo')      "check if your vim version supports it
+if has('persistent_undo')      "check if your vim version supports it
   set undofile                 "turn on the feature
   set undolevels=5000          "save lots of history
   set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
-" endif
+endif
 
 if $TERM == "xterm-256color"
   set t_Co=256
@@ -91,10 +91,6 @@ autocmd BufNewFile,BufRead *.ejs setlocal ft=html
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
 
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
 
 
 
@@ -116,11 +112,11 @@ nnoremap <leader>st :!tmux source ~/.tmux.conf<CR>
 nnoremap <leader>ss :w<CR>
 
 " Initiate Vim's default AutoComplete
-inoremap <Tab> <C-P>
+" inoremap <Tab> <C-P>
 
 " Initiate Search and Replace without worrying about case. Confirm before replacing
 nnoremap <leader>F :%s//gci<Left><Left><Left><Left>
-nnoremap \ :Ack<SPACE>
+nnoremap \ :Ack!<SPACE>
 
 " Switch left and right between buffers
 nnoremap <leader>q :bp<CR>
@@ -180,6 +176,15 @@ let g:user_emmet_settings = { 'javascript.jsx' : { 'extends' : 'jsx' } }
 
 " mhinz/vim-signify
 let g:signify_vcs_list = [ 'git' ]
+
+" mileszs/ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+let g:ack_autoclose = 1
+let g:ack_mappings = {
+  \ 'v':  '<C-W><CR><C-W>L<C-W>p<C-W>J<C-W>p',
+  \ 'gv': '<C-W><CR><C-W>L<C-W>p<C-W>J'}
 
 " mxw/vim-jsx
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
