@@ -32,7 +32,7 @@
 # http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
 
 # -------------------------------------------------------------------------------
-# Vim Surround
+# Vim
 # -------------------------------------------------------------------------------
 
 # normal
@@ -46,6 +46,16 @@
   'c s': 'vim-mode-plus:change-surround-any-pair'
   'c S': 'vim-mode-plus:change-surround'
 
+  # Move between panes using Ctrl and Vim directional keys
+  'ctrl-h': 'window:focus-pane-on-left'
+  'ctrl-l': 'window:focus-pane-on-right'
+  'ctrl-j': 'window:focus-pane-below'
+  'ctrl-k': 'window:focus-pane-above'
+
+  # Move between tabs using Shift and Vim directional keys
+  'shift-h': 'pane:show-previous-item'
+  'shift-l': 'pane:show-next-item'
+
 # operator-pending only when surround-pending
 # -------------------------
 'atom-text-editor.vim-mode-plus.operator-pending-mode.surround-pending':
@@ -55,3 +65,7 @@
 # -------------------------
 'atom-text-editor.vim-mode-plus.visual-mode:not(.insert-mode)':
   'S': 'vim-mode-plus:surround'
+
+'.platform-darwin atom-workspace':
+  'shift-cmd-H': 'platformio-ide-terminal:prev'
+  'shift-cmd-L': 'platformio-ide-terminal:next'

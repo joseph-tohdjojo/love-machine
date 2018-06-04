@@ -1,17 +1,9 @@
 selectp -t 0 # select the first (0) pane
 splitw -v -p 20 # split it vertically for bottom section
 
-selectp -t 1 # select the new, second (1) pane
+selectp -t 2 # select the new, second (1) pane
 
-splitw -h -p 20 # split it for the clock
-
-selectp -t 1 # select the second (1) pane
 splitw -h -p 50 # split it into two halves
-selectp -t 1 # select the second (1) pane
+selectp -t 2 # select the second (1) pane
 
-setw synchronize-panes on
-send-keys 'nvm use node' Enter
-send-keys 'clear' Enter
-setw synchronize-panes off
-
-selectp -t 0 # go back to the first pane
+selectp -t 1 # go back to the first pane

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+export VAULT_ADDR=https://prod.vault.conde.io:443
+alias vaultauth="vault auth -method=ldap mount=ad username=jtohdjoj"
+
+export DEBUG=copilot-util:http-request
+
+releaseap () {
+  # v2.1.1
+  tag=$1
+  message=$2
+
+  # Checkout and get latest on the master branch:
+  git checkout master;git fetch;
+
+  # Update with the latest code from the develop branch:
+  git pull origin develop;
+
+  # Tag master using the format v1.1.1 and write a description of the release:
+  git tag -a $tag -m "$message"
+
+  # Push the new tag up to github
+  # Push changes up to the master branch
+  git push origin $tag;git push origin master;
+}

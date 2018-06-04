@@ -27,9 +27,6 @@ set updatetime=1000
 set visualbell
 set wildignore+=node_modules/**
 
-autocmd BufNewFile,BufRead *.scss set ft=scss.css
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
 if has('persistent_undo')      "check if your vim version supports it
   set undofile                 "turn on the feature
   set undolevels=5000          "save lots of history
@@ -120,7 +117,7 @@ nnoremap <leader>ss :w<CR>
 
 " Initiate Search and Replace without worrying about case. Confirm before replacing
 nnoremap <leader>F :%s//gci<Left><Left><Left><Left>
-nnoremap \ :Ack!<SPACE>
+nnoremap <leader>? :Ack!<SPACE>
 
 " Switch left and right between buffers
 nnoremap <leader>q :bp<CR>
@@ -170,6 +167,11 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
+" cakebaker/scss-syntax.vim
+au BufRead,BufNewFile *.scss set filetype=scss.css
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+
 " ctrlpvim/ctrlp.vim
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_working_path_mode = 'ra'
@@ -209,6 +211,9 @@ let g:NERDSpaceDelims = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+" Xuyuanp/nerdtree-git-plugin
+let g:NERDTreeShowIgnoredStatus = 1
 
 " Yggdroot/indentLine
 let g:indentLine_enabled = 1

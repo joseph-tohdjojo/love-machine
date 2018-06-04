@@ -97,10 +97,20 @@ alias bashsource="source $HOME/.bash_profile"
 # Reload .tmux.conf
 alias tmuxsource="tmux source-file $HOME/.tmux.conf"
 
-alias vaultauth="vault auth -method=ldap mount=ad username=$USERNAME"
+alias killnode="killall -9 node"
+alias restart-dev="killnode && npm run dev"
 
-export VAULT_ADDR=http://prod.vault.conde.io:443
+export VAULT_ADDR=https://prod.vault.conde.io:443
+alias vaultauth="vault auth -method=ldap mount=ad username=jtohdjoj"
+
+if [ -f ~/.bashrc_work ]; then
+  source ~/.bashrc_work
+fi
+
+#################################################################################
+# Plugins
+#################################################################################
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-

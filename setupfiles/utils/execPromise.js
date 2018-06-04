@@ -15,6 +15,8 @@ module.exports = ({
       if (!shouldNotHandleError && err) {
         spinner.fail(failureMessage || `Unable to execute this command`)
         reject(err)
+      } else if(!shouldNotHandleError && stderr) {
+        reject(stderr)
       } else {
         spinner.succeed(successMessage || `Successfully executed command!!!`)
         resolve({ err, stdout, stderr })

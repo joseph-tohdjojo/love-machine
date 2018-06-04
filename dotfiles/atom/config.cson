@@ -1,4 +1,6 @@
 "*":
+  "atom-clock":
+    dateFormat: "[Quarter] Q • MM/D/YY • ddd • h:mm a"
   "atom-material-ui":
     colors:
       abaseColor: "#fbd451"
@@ -24,9 +26,27 @@
     allowPendingPaneItems: false
     audioBeep: false
     disabledPackages: [
-      "linter"
+      "language-perl"
+      "language-c"
+      "language-clojure"
+      "language-csharp"
+      "language-go"
+      "language-java"
+      "language-mustache"
+      "language-objective-c"
+      "language-php"
+      "language-python"
+      "language-property-list"
+      "language-ruby"
+      "language-ruby-on-rails"
+      "language-source"
+      "language-sql"
+      "language-toml"
+      "language-xml"
+      "welcome"
+      "about"
+      "background-tips"
     ]
-    excludeVcsIgnoredPaths: false
     ignoredNames: [
       ".hg"
       ".svn"
@@ -38,7 +58,7 @@
     projectHome: "/Users/jt641v/Projects"
     telemetryConsent: "no"
     themes: [
-      "atom-material-ui"
+      "one-dark-ui"
       "base16-tomorrow-dark-theme"
     ]
   editor:
@@ -46,6 +66,7 @@
     fontSize: 11
     invisibles:
       eol: "·"
+    scrollPastEnd: true
     showIndentGuide: true
     showInvisibles: true
     softWrap: false
@@ -53,15 +74,28 @@
     userId: "d95f1f20-d79b-4880-b691-2d5bc598c474"
   "fuzzy-finder":
     preserveLastSearch: true
+  "linter-eslint": {}
+  "linter-sass-lint":
+    noConfigDisable: true
   "linter-ui-default":
-    showPanel: true
+    alwaysTakeMinimumSpace: true
+    decorateOnTreeView: "Files and Directories"
+    showProviderName: true
   minimap:
     plugins:
       "find-and-replace": true
       "find-and-replaceDecorationsZIndex": 0
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
   "platformio-ide-terminal":
+    core:
+      scrollback: 10000
     style:
-      theme: "dracula"
+      defaultPanelHeight: "200px"
+      fontFamily: "FuraCode Nerd Font"
+      fontSize: "10"
+      theme: "predawn"
+    toggles: {}
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true
@@ -69,9 +103,11 @@
       isDisabledIfNotInPackageJson: true
       showInStatusBar: true
     prettierOptions:
-      semi: false
       singleQuote: true
       trailingComma: "all"
+    useEditorConfig: false
+    useEslint: true
+    useStylelint: true
   "relative-numbers": {}
   "tree-view": {}
   wakatime:

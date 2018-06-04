@@ -7,11 +7,12 @@ const HOMEDIR = os.homedir()
 
 module.exports = () =>
   updateOrInstallHomebrew()
-    .then(() => _setupBashCompletion())
-    .then(() => _setupBashGitPrompt())
-    .then(() => _symlinkBashProfile())
-    .then(() => _symlinkBashrc())
-    .then(() => _sourceBashProfile())
+    .then(_setupBashCompletion)
+    .then(_setupBashGitPrompt)
+    .then(_symlinkBashProfile)
+    .then(_symlinkBashrc)
+    .then(_symlinkBashrcWork)
+    .then(_sourceBashProfile)
 
 function _setupBashCompletion() {
   return execPromise({
@@ -124,6 +125,19 @@ function _symlinkBashrc() {
     'bashrc',
   )
   const target = `${HOMEDIR}/.bashrc`
+  return symlink(fileToPointTo, target)
+}
+
+function _symlinkBashrcWork() {
+  const fileToPointTo = path.resolve(
+    __dirname,
+    '..',
+    '..',
+    'dotfiles',
+    'bash',
+    'bashrc_work',
+  )
+  const target = `${HOMEDIR}/.bashrc_work`
   return symlink(fileToPointTo, target)
 }
 

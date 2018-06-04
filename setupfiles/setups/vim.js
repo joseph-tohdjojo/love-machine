@@ -1,4 +1,5 @@
 const path = require('path')
+const ora = require('ora')
 const os = require('os')
 const { execPromise, symlink, updateOrInstallHomebrew } = require('../utils')
 
@@ -9,16 +10,21 @@ module.exports = () =>
   updateOrInstallHomebrew()
     .then(() => _installVim())
     .then(() => _installSilverSearcher())
+    .then(() => _installCmake()) // Needed to properly configure YouCompleteMe Vim Plugin
     .then(() => _deleteVimFolder())
     .then(() => _deleteVimFiles())
     .then(() => _installVimPlug())
     .then(() => _symlinkVimrc())
     .then(() => _symlinkVimrcBundles())
     .then(() => _symlinkVimrcBundlesLocal())
+    .then(() => _symlinkVimrcBundlesWork())
     .then(() => _symlinkTernProject())
     .then(() => _installVimPlugins())
     .then(() => _symlinkVimrcLocal())
     .then(() => _sourceVimrc())
+    .then(() => {
+      console.log(`Open vim and run \`:WakaTimeApiKey\` to change the api key saved in your \`~/.wakatime.cfg\``)
+    })
 
 function _installVim() {
   return execPromise({
@@ -55,6 +61,27 @@ function _installSilverSearcher() {
         startMessage: 'Attempting to upgrade The Silver Searcher',
         successMessage: 'Successfully upgraded The Silver Searcher!!!',
         failureMessage: 'Unable to upgrade The Silver Searcher',
+      })
+    } else {
+      Promise.resolve()
+    }
+  })
+}
+
+function _installCmake() {
+  return execPromise({
+    command: 'brew install cmake',
+    startMessage: 'Attempting to install Cmake',
+    successMessage: 'Successfully installed Cmake!!!',
+    failureMessage: 'Unable to  install Cmake',
+    shouldNotHandleError: true,
+  }).then(({ err }) => {
+    if (err) {
+      return execPromise({
+        command: 'brew upgrade cmake',
+        startMessage: 'Attempting to upgrade Cmake',
+        successMessage: 'Successfully upgraded Cmake!!!',
+        failureMessage: 'Unable to upgrade Cmake',
       })
     } else {
       Promise.resolve()
@@ -108,6 +135,13 @@ function _symlinkVimrcBundlesLocal() {
   return symlink(
     path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', 'vimrc.bundles.local'),
     `${HOMEDIR}/.vimrc.bundles.local`,
+  )
+}
+
+function _symlinkVimrcBundlesWork() {
+  return symlink(
+    path.resolve(__dirname, '..', '..', 'dotfiles', 'vim', 'vimrc.bundles.work'),
+    `${HOMEDIR}/.vimrc.bundles.work`,
   )
 }
 

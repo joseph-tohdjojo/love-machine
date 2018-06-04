@@ -4,13 +4,13 @@ const { execPromise, symlink, updateOrInstallHomebrew } = require('../utils')
 
 const HOMEDIR = os.homedir()
 
-module.exports = () =>
-  updateOrInstallHomebrew()
+module.exports = () => Promise.resolve()
+    .then(() => updateOrInstallHomebrew())
     .then(() => _installTmux())
     .then(() => _deleteTmuxFolder())
-    .then(() => _installTPM())
+    .then(() => _installOhMyTmux())
     .then(() => _symlinkTmuxConfig())
-    .then(() => _installTPMPlugins())
+    .then(() => _symlinkTmuxLocalConfig())
     .then(() => _symlinkTmuxDevLayout())
 
 function _installTmux() {
@@ -43,29 +43,27 @@ function _deleteTmuxFolder() {
   })
 }
 
-function _installTPM() {
+function _installOhMyTmux() {
   return execPromise({
-    command: `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`,
-    startMessage: 'Attempting to install TPM',
-    successMessage: 'Successfully installed TPM!!!',
-    failureMessage: 'Unable to install TPM',
+    command: `git clone https://github.com/gpakosz/.tmux.git ~/.tmux`,
+    startMessage: 'Attempting to install Oh My Tmux',
+    successMessage: 'Successfully installed Oh My Tmux!!!',
+    failureMessage: 'Unable to install Oh My Tmux',
   })
 }
 
 function _symlinkTmuxConfig() {
   return symlink(
-    path.resolve(__dirname, '..', '..', 'dotfiles', 'tmux', 'tmux.conf'),
+    path.resolve(HOMEDIR, '.tmux', '.tmux.conf'),
     `${HOMEDIR}/.tmux.conf`,
   )
 }
 
-function _installTPMPlugins() {
-  return execPromise({
-    command: `${HOMEDIR}/.tmux/plugins/tpm/bin/install_plugins`,
-    startMessage: 'Attempting to install Tmux plugins',
-    successMessage: 'Successfully installed Tmux plugins',
-    failureMessage: 'Unable to install Tmux plugins',
-  })
+function _symlinkTmuxLocalConfig() {
+  return symlink(
+    path.resolve(__dirname, '..', '..', 'dotfiles', 'tmux', 'tmux.conf.local'),
+    `${HOMEDIR}/.tmux.conf.local`,
+  )
 }
 
 function _symlinkTmuxDevLayout() {
