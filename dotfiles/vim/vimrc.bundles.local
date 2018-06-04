@@ -1,6 +1,7 @@
 Plug 'alvan/vim-closetag'
 Plug 'chriskempson/base16-vim/'
 Plug 'christoomey/vim-tmux-navigator'
+" Plug 'garbas/vim-snipmate'
 Plug 'gko/vim-coloresque'
 Plug 'henrik/vim-indexed-search'
 Plug 'jiangmiao/auto-pairs'

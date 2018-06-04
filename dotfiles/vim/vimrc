@@ -136,8 +136,8 @@ nnoremap <Leader>r :RunInInteractiveShell<Space>
 let g:html_indent_tags = 'li\|p'
 
 " Open new split panes to right and bottom, which feels more natural
-set splitbelow
 set splitright
+set splitbelow
 
 " Quicker window movement
 nnoremap <C-j> <C-w>j

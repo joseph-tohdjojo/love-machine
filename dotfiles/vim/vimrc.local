@@ -18,6 +18,7 @@ set noswapfile
 set nowrap
 set number relativenumber
 set numberwidth=4
+" set omnifunc=csscomplete#CompleteCSS
 set scrolloff=15
 set smartindent
 set smarttab
@@ -25,6 +26,9 @@ set softtabstop=2
 set updatetime=1000
 set visualbell
 set wildignore+=node_modules/**
+
+autocmd BufNewFile,BufRead *.scss set ft=scss.css
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 if has('persistent_undo')      "check if your vim version supports it
   set undofile                 "turn on the feature
