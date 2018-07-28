@@ -117,9 +117,9 @@ function _symlinkStylesheet() {
 
 function _installAtomPackages() {
   return Promise.all(packages.map((pkg) => {
-    const spinner = ora(`Attempting to install ${pkg}`)
-    spinner.start()
     return new Promise((resolve, reject) => {
+      const spinner = ora(`Attempting to install ${pkg}`)
+      spinner.start()
       exec(`apm install ${pkg}`, (err, stdout, stderr) => {
         if(err) {
           spinner.fail(`Unable to install ${pkg}`)

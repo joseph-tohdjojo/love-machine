@@ -17,6 +17,8 @@
     ui:
       panelContrast: true
       panelShadows: true
+  "atom-minify":
+    jsMinifier: "UglifyJS2"
   "auto-update-packages": {}
   autosave:
     enabled: true
@@ -34,7 +36,6 @@
       "language-java"
       "language-mustache"
       "language-objective-c"
-      "language-php"
       "language-python"
       "language-property-list"
       "language-ruby"
@@ -74,12 +75,18 @@
     userId: "d95f1f20-d79b-4880-b691-2d5bc598c474"
   "fuzzy-finder":
     preserveLastSearch: true
+  "ide-php":
+    phpPath: "/Applications/MAMP/bin/php/php7.2.1/bin"
+  "language-babel":
+    autoIndentJSX: true
+    emmetCSSAutocomplete: true
   "linter-eslint": {}
   "linter-sass-lint":
     noConfigDisable: true
   "linter-ui-default":
     alwaysTakeMinimumSpace: true
     decorateOnTreeView: "Files and Directories"
+    showPanel: true
     showProviderName: true
   minimap:
     plugins:
@@ -87,6 +94,8 @@
       "find-and-replaceDecorationsZIndex": 0
       "highlight-selected": true
       "highlight-selectedDecorationsZIndex": 0
+  "php-debug":
+    showWelcome: false
   "platformio-ide-terminal":
     core:
       scrollback: 10000
@@ -109,6 +118,7 @@
     useEslint: true
     useStylelint: true
   "relative-numbers": {}
+  "symbol-gen": {}
   "tree-view": {}
   wakatime:
     apikey: "Saved in your ~/.wakatime.cfg file"

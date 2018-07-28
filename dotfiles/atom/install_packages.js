@@ -1,4 +1,5 @@
 module.exports = [
+  'atom-beautify',
   'atom-clock',
   'atom-handlebars',
   'auto-update-packages',
@@ -7,7 +8,7 @@ module.exports = [
   'file-icons',
   'highlight-selected',
   'intentions',
-  'language-javascript-jsx',
+  'language-babel',
   'linter',
   'linter-csslint',
   'linter-eslint',
