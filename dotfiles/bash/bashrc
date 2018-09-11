@@ -84,7 +84,7 @@ alias ll="ls -lah"
 alias la="ls -a"
 
 # Change directories
-alias dev="cd ~/Documents/Dev/"
+alias dev="cd ~/Documents/code/"
 alias ..="cd .."
 
 # Git
