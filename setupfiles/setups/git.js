@@ -6,7 +6,6 @@ const HOMEDIR = os.homedir()
 
 module.exports = () =>
   _symlinkGitCompletion()
-    .then(() => _symlinkGitConfig())
     .then(() => _symlinkGitExcludes())
     .then(() => _symlinkGitIgnore())
     .then(() => _sourceBashProfile())
@@ -21,19 +20,6 @@ function _symlinkGitCompletion() {
     'git-completion.bash',
   )
   const target = `${HOMEDIR}/.git-completion.bash`
-  return symlink(fileToPointTo, target)
-}
-
-function _symlinkGitConfig() {
-  const fileToPointTo = path.resolve(
-    __dirname,
-    '..',
-    '..',
-    'dotfiles',
-    'git',
-    'gitconfig',
-  )
-  const target = `${HOMEDIR}/.gitconfig`
   return symlink(fileToPointTo, target)
 }
 
