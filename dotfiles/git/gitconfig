@@ -3,7 +3,7 @@
 	email = joseph.tohdjojo@gmail.com
 [core]
   editor = vim
-	excludesfile = /Users/jtohdjoj/.gitignore_global
+	excludesfile = /Users/joe/.gitignore_global
 [credential]
   helper = osxkeychain
 [difftool "sourcetree"]

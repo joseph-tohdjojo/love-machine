@@ -109,8 +109,7 @@ function _deleteVimFiles() {
 
 function _installVimPlug() {
   return execPromise({
-    command:
-      'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
+    command: 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim',
     startMessage: 'Attempting to install Vim-Plug',
     successMessage: 'Successfully installed Vim-Plug!!!',
     failureMessage: 'Unable to install Vim-Plug',
