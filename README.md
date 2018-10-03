@@ -4,11 +4,16 @@ A node app to get my machine configured just the way I like it
 
 ### How do I get set up?
 
-* You will need Node installed. I recommend [NVM](https://github.com/creationix/nvm#install-script).
-* You will need [Homebrew](https://brew.sh/) installed.
-* Run `npm install`
-* Run `npm start`
-* Answer the prompt questions
+1. You will need [Homebrew](https://brew.sh/) installed.
+2. You will need NVM installed. I recommend installing it with Homebrew [NVM](https://github.com/creationix/nvm#install-script).
+3. Run `brew update`
+4. Run `brew install nvm`
+5. Run `source $(brew --prefix nvm)/nvm.sh`
+6. Run `echo "source $(brew --prefix nvm)/nvm.sh" >> ~/.bashrc`
+7. `cd` into the project's repository
+8. Run `npm install`
+9. Run `npm start`
+10. Answer the prompt questions
 
 ### What's going on?
 #### Atom
